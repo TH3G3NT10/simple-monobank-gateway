@@ -8,9 +8,7 @@ Lightweight Monobank payment gateway for WooCommerce with automatic order update
 
 ✅ Monobank payment gateway  
 ✅ Automatic order status updates  
-✅ Webhook support  
-✅ Manual payment status check  
-✅ Payment history panel  
+✅ Payment history panel with Manual payment status check  
 ✅ Multilingual support  
 ✅ Ukrainian localization included  
 
@@ -56,22 +54,6 @@ Simple Monobank Gateway
 
 ---
 
-## Screenshots
-
-### Gateway settings
-
-Configure Monobank token and payment settings.
-
-### Payment history
-
-Track payment statuses directly in WordPress admin.
-
-### Checkout
-
-Customers can select Monobank during checkout.
-
----
-
 ## Localization
 
 Current languages:
@@ -99,14 +81,13 @@ gettext
 - [x] Manual payment status check
 - [x] Localization
 - [ ] Better admin table
-- [ ] Search and filters
+- [ ] Test mode
 
 ### Pro
 
 - [ ] Telegram notifications
 - [ ] CSV export
 - [ ] Payment analytics
-- [ ] Multiple Monobank accounts
 - [ ] Advanced logs
 - [ ] Custom order statuses
 
@@ -114,7 +95,7 @@ gettext
 
 ## Contributing
 
-Issues, suggestions and pull requests are welcome.
+Issues, suggestions, and pull requests are welcome.
 
 ---
 

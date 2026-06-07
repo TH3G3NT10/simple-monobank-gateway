@@ -1,0 +1,77 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Simple Monobank Gateway 1.0.0\n"
+"Language: uk_UA\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+msgid "Enable"
+msgstr "Увімкнути"
+
+msgid "Title"
+msgstr "Назва"
+
+msgid "Description"
+msgstr "Опис"
+
+msgid "Pay via Monobank"
+msgstr "Оплатити через Monobank"
+
+msgid "API Token"
+msgstr "API токен"
+
+msgid "Webhook Secret"
+msgstr "Секретний ключ Webhook"
+
+msgid "Payment error"
+msgstr "Помилка оплати"
+
+msgid "Monobank"
+msgstr "Monobank"
+
+msgid "Mono Payments"
+msgstr "Платежі Monobank"
+
+msgid "Order"
+msgstr "Замовлення"
+
+msgid "Invoice"
+msgstr "Інвойс"
+
+msgid "Status"
+msgstr "Статус"
+
+msgid "Updated"
+msgstr "Оновлено"
+
+msgid "Success"
+msgstr "Успішно"
+
+msgid "Processing"
+msgstr "Обробка"
+
+msgid "Pending"
+msgstr "Очікується"
+
+msgid "Created"
+msgstr "Створено"
+
+msgid "Failed"
+msgstr "Помилка"
+
+msgid "Expired"
+msgstr "Протерміновано"
+
+msgid "Unknown"
+msgstr "Невідомо"
+
+msgid "Action"
+msgstr "Дія"
+
+msgid "Check"
+msgstr "Перевірити"
+
+msgid "You do not have permission to perform this action."
+msgstr "У вас немає прав для виконання цієї дії."

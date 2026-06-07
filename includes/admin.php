@@ -1,10 +1,14 @@
 <?php
 
+if (!defined('ABSPATH')) {
+    exit;
+}
+
 add_action('admin_menu', function () {
 
     add_menu_page(
-        'Mono Payments',
-        'Mono Payments',
+        __('Mono Payments', 'smpl-mono-gateway'),
+        __('Mono Payments', 'smpl-mono-gateway'),
         'manage_woocommerce',
         'smpl-mono',
         'smpl_mono_admin_page',
@@ -15,26 +19,28 @@ add_action('admin_menu', function () {
 
 add_action('admin_init', function () {
 
+    $page = isset($_GET['page'])
+        ? sanitize_text_field(wp_unslash($_GET['page']))
+        : '';
+
+    $check_order = isset($_GET['smpl_check_order'])
+        ? absint(wp_unslash($_GET['smpl_check_order']))
+        : 0;
+
     if (
-        !isset($_GET['page']) ||
-        $_GET['page'] !== 'smpl-mono' ||
-        !isset($_GET['smpl_check_order'])
+        $page !== 'smpl-mono' ||
+        !$check_order
     ) {
         return;
     }
 
     if (!current_user_can('manage_woocommerce')) {
         wp_die(
-            esc_html__('You do not have permission to perform this action.', 'smpl-mono')
+            esc_html__('You do not have permission to perform this action.', 'smpl-mono-gateway')
         );
     }
 
-    $order_id = absint($_GET['smpl_check_order']);
-
-    if (!$order_id) {
-        wp_safe_redirect(admin_url('admin.php?page=smpl-mono'));
-        exit;
-    }
+    $order_id = $check_order;
 
     check_admin_referer(
         'smpl_mono_check_order_' . $order_id
@@ -130,32 +136,32 @@ function smpl_mono_get_status_badge($status) {
 
         'success' => [
             'color' => '#46b450',
-            'label' => __('Success', 'smpl-mono')
+            'label' => __('Success', 'smpl-mono-gateway')
         ],
 
         'processing' => [
             'color' => '#00a0d2',
-            'label' => __('Processing', 'smpl-mono')
+            'label' => __('Processing', 'smpl-mono-gateway')
         ],
 
         'pending' => [
             'color' => '#ffb900',
-            'label' => __('Pending', 'smpl-mono')
+            'label' => __('Pending', 'smpl-mono-gateway')
         ],
 
         'created' => [
             'color' => '#ffb900',
-            'label' => __('Created', 'smpl-mono')
+            'label' => __('Created', 'smpl-mono-gateway')
         ],
 
         'failure' => [
             'color' => '#dc3232',
-            'label' => __('Failed', 'smpl-mono')
+            'label' => __('Failed', 'smpl-mono-gateway')
         ],
 
         'expired' => [
             'color' => '#777',
-            'label' => __('Expired', 'smpl-mono')
+            'label' => __('Expired', 'smpl-mono-gateway')
         ]
 
     ];
@@ -169,7 +175,7 @@ function smpl_mono_get_status_badge($status) {
             border-radius:20px;
             font-size:12px;
         ">' .
-        esc_html__('Unknown', 'smpl-mono') .
+        esc_html__('Unknown', 'smpl-mono-gateway') .
         '</span>';
 
     }
@@ -190,7 +196,7 @@ function smpl_mono_get_status_badge($status) {
 function smpl_mono_admin_page() {
 
     $current_page = isset($_GET['paged'])
-        ? max(1, absint($_GET['paged']))
+        ? max(1, absint(wp_unslash($_GET['paged'])))
         : 1;
 
     $per_page = 20;
@@ -214,18 +220,18 @@ function smpl_mono_admin_page() {
     echo '<div class="wrap">';
 
     echo '<h1>' .
-    esc_html__('Mono Payments', 'smpl-mono') .
+    esc_html__('Mono Payments', 'smpl-mono-gateway') .
     '</h1>';
 
     echo '<table class="widefat striped">';
 
     echo '<thead>
         <tr>
-            <th>' . esc_html__('Order', 'smpl-mono') . '</th>
-            <th>' . esc_html__('Invoice', 'smpl-mono') . '</th>
-            <th>' . esc_html__('Status', 'smpl-mono') . '</th>
-            <th>' . esc_html__('Updated', 'smpl-mono') . '</th>
-            <th>' . esc_html__('Action', 'smpl-mono') . '</th>
+            <th>' . esc_html__('Order', 'smpl-mono-gateway') . '</th>
+            <th>' . esc_html__('Invoice', 'smpl-mono-gateway') . '</th>
+            <th>' . esc_html__('Status', 'smpl-mono-gateway') . '</th>
+            <th>' . esc_html__('Updated', 'smpl-mono-gateway') . '</th>
+            <th>' . esc_html__('Action', 'smpl-mono-gateway') . '</th>
         </tr>
     </thead>';
 
@@ -269,7 +275,7 @@ function smpl_mono_admin_page() {
             </td>
 
             <td>
-                ' . smpl_mono_get_status_badge($status) . '
+                ' . wp_kses_post(smpl_mono_get_status_badge($status)) . '
             </td>
 
             <td>
@@ -278,7 +284,7 @@ function smpl_mono_admin_page() {
 
             <td>
                 <a href="' . esc_url($check_url) . '" class="button button-small">
-                    ' . esc_html__('Check', 'smpl-mono') . '
+                    ' . esc_html__('Check', 'smpl-mono-gateway') . '
                 </a>
             </td>
 
@@ -293,17 +299,19 @@ function smpl_mono_admin_page() {
     echo '<div class="tablenav">';
     echo '<div class="tablenav-pages">';
 
-    echo paginate_links([
-        'base'      => add_query_arg(
-            'paged',
-            '%#%'
-        ),
-        'format'    => '',
-        'current'   => $current_page,
-        'total'     => $total_pages,
-        'prev_text' => '&laquo;',
-        'next_text' => '&raquo;'
-    ]);
+    echo wp_kses_post(
+        paginate_links([
+            'base'      => add_query_arg(
+                'paged',
+                '%#%'
+            ),
+            'format'    => '',
+            'current'   => $current_page,
+            'total'     => $total_pages,
+            'prev_text' => '&laquo;',
+            'next_text' => '&raquo;'
+        ])
+    );
 
     echo '</div>';
     echo '</div>';

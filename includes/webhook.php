@@ -1,16 +1,26 @@
 <?php
 
+if (!defined('ABSPATH')) {
+    exit;
+}
+
 add_action('init', function () {
 
+    $request_uri = isset($_SERVER['REQUEST_URI'])
+        ? sanitize_text_field(wp_unslash($_SERVER['REQUEST_URI']))
+        : '';
+
     if (
-        trim($_SERVER['REQUEST_URI'], '/') !== 'smpl-mono-webhook'
+        trim($request_uri, '/') !== 'smpl-mono-webhook'
     ) {
         return;
     }
 
     $body = file_get_contents('php://input');
 
-    $x_sign = $_SERVER['HTTP_X_SIGN'] ?? '';
+    $x_sign = isset($_SERVER['HTTP_X_SIGN'])
+        ? sanitize_text_field(wp_unslash($_SERVER['HTTP_X_SIGN']))
+        : '';
 
     if (empty($x_sign)) {
 

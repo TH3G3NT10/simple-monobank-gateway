@@ -56,17 +56,6 @@ YevhenB Payments with Mono
 | WooCommerce | Required |
 | PHP | 7.4+ |
 
----
-
-## Webhook
-
-Current webhook endpoint:
-
-```text
-https://your-site.com/smpl-mono-webhook
-```
-
-The endpoint is intentionally kept unchanged for compatibility with the existing working integration.
 
 ---
 
@@ -116,18 +105,6 @@ Translation-ready using:
 gettext
 .po
 .mo
-```
-
----
-
-## Development notes
-
-Some internal identifiers are intentionally kept unchanged for compatibility:
-
-```text
-Gateway ID: smpl_mono
-Webhook endpoint: /smpl-mono-webhook
-Meta keys: _mono_invoice_id, _mono_status, _mono_updated
 ```
 
 ---
@@ -229,18 +206,6 @@ YevhenB Payments with Mono
 
 ---
 
-## Webhook
-
-Поточний webhook endpoint:
-
-```text
-https://your-site.com/smpl-mono-webhook
-```
-
-Endpoint навмисно залишено без змін для сумісності з уже робочою інтеграцією.
-
----
-
 ## Зовнішні сервіси
 
 Цей плагін підключається до Monobank acquiring API для створення платіжних інвойсів, перевірки статусу інвойсів і перевірки підписів webhook-запитів.
@@ -291,17 +256,6 @@ gettext
 
 ---
 
-## Примітки для розробки
-
-Деякі внутрішні ідентифікатори навмисно залишені без змін для сумісності:
-
-```text
-Gateway ID: smpl_mono
-Webhook endpoint: /smpl-mono-webhook
-Meta keys: _mono_invoice_id, _mono_status, _mono_updated
-```
-
----
 
 ## Roadmap
 

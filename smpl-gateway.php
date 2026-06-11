@@ -1,12 +1,14 @@
 <?php
 /*
-Plugin Name: Simple Monobank Gateway for WooCommerce
-Description: Simple payment gateway for Monobank.
+Plugin Name: YevhenB Payments with Mono for WooCommerce
+Description: Lightweight payment gateway for WooCommerce that connects to the Monobank acquiring API for online payments.
 Version: 1.0.0
-Author: Yevhen Bilonozhko
-License: GPL2+
-Text Domain: smpl-mono-gateway
+Author: Yevhen Bilonozhko (yevhenb)
+License: GPLv2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: yevhenb-payments-with-mono-for-woocommerce
 Domain Path: /languages
+Requires Plugins: woocommerce
 */
 
 if (!defined('ABSPATH')) {

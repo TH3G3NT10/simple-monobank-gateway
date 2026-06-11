@@ -169,8 +169,6 @@ https://www.gnu.org/licenses/gpl-2.0.html
 
 ---
 
-# Українська версія
-
 # YevhenB Payments with Mono for WooCommerce
 
 Легкий платіжний шлюз для WooCommerce, який підключається до Monobank acquiring API для онлайн-оплат, автоматичного оновлення замовлень і відстеження статусу платежів.

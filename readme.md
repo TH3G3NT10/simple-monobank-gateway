@@ -11,7 +11,6 @@ Lightweight payment gateway for WooCommerce that connects to the Monobank acquir
 ✅ Payment gateway for WooCommerce  
 ✅ Invoice creation through the Monobank acquiring API  
 ✅ Automatic order status updates  
-✅ Webhook support with signature verification  
 ✅ Payment history panel with manual payment status check  
 ✅ Multilingual support  
 ✅ Ukrainian localization included  
@@ -124,11 +123,10 @@ gettext
 
 ### Pro / Future ideas
 
+- [ ] National Cashback and payment by installments
 - [ ] Telegram notifications
 - [ ] CSV export
-- [ ] Payment analytics
-- [ ] Advanced logs
-- [ ] Custom order statuses
+- [ ] Analytics
 
 ---
 
@@ -159,7 +157,6 @@ https://www.gnu.org/licenses/gpl-2.0.html
 ✅ Платіжний шлюз для WooCommerce  
 ✅ Створення інвойсів через Monobank acquiring API  
 ✅ Автоматичне оновлення статусу замовлення  
-✅ Підтримка webhook з перевіркою підпису  
 ✅ Панель історії платежів із ручною перевіркою статусу  
 ✅ Підтримка багатомовності  
 ✅ Українська локалізація включена  
@@ -228,13 +225,13 @@ YevhenB Payments with Mono
 Інформація про сервіс і документи:  
 https://monobank.ua/en/documents
 
-API documentation:  
+API документація:  
 https://monobank.ua/api-docs/acquiring
 
-Developer API documentation:  
+API документація для розробників:  
 https://api.monobank.ua/docs/acquiring.html
 
-Security information:  
+Безпекова інформація:  
 https://monobank.ua/en/security
 
 ---
@@ -262,7 +259,7 @@ gettext
 ### Free
 
 - [x] Платіжний шлюз для WooCommerce
-- [x] Інтеграція з Monobank acquiring API
+- [x] Інтеграція з Monobank API
 - [x] Webhooks
 - [x] Панель історії платежів
 - [x] Ручна перевірка статусу платежу
@@ -272,17 +269,16 @@ gettext
 
 ### Pro / майбутні ідеї
 
+- [ ] Національний кешбек та оплата частинами
 - [ ] Telegram-сповіщення
 - [ ] CSV export
-- [ ] Payment analytics
-- [ ] Advanced logs
-- [ ] Custom order statuses
+- [ ] Аналітика
 
 ---
 
-## Contributing
+## Внески
 
-Issues, suggestions, and pull requests are welcome.
+Проблеми, пропозиції та запити на внесення змін вітаються.
 
 ---
 

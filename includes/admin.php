@@ -7,11 +7,11 @@ if (!defined('ABSPATH')) {
 add_action('admin_menu', function () {
 
     add_menu_page(
-        __('Mono Payments', 'smpl-mono-gateway'),
-        __('Mono Payments', 'smpl-mono-gateway'),
+        __('YevhenB Payments', 'yevhenb-payments-with-mono-for-woocommerce'),
+        __('YevhenB Payments', 'yevhenb-payments-with-mono-for-woocommerce'),
         'manage_woocommerce',
-        'smpl-mono',
-        'smpl_mono_admin_page',
+        'yevhenb-mono-payments',
+        'yevhenb_mono_admin_page',
         'dashicons-money'
     );
 
@@ -23,12 +23,12 @@ add_action('admin_init', function () {
         ? sanitize_text_field(wp_unslash($_GET['page']))
         : '';
 
-    $check_order = isset($_GET['smpl_check_order'])
-        ? absint(wp_unslash($_GET['smpl_check_order']))
+    $check_order = isset($_GET['yevhenb_check_order'])
+        ? absint(wp_unslash($_GET['yevhenb_check_order']))
         : 0;
 
     if (
-        $page !== 'smpl-mono' ||
+        $page !== 'yevhenb-mono-payments' ||
         !$check_order
     ) {
         return;
@@ -36,20 +36,20 @@ add_action('admin_init', function () {
 
     if (!current_user_can('manage_woocommerce')) {
         wp_die(
-            esc_html__('You do not have permission to perform this action.', 'smpl-mono-gateway')
+            esc_html__('You do not have permission to perform this action.', 'yevhenb-payments-with-mono-for-woocommerce')
         );
     }
 
     $order_id = $check_order;
 
     check_admin_referer(
-        'smpl_mono_check_order_' . $order_id
+        'yevhenb_mono_check_order_' . $order_id
     );
 
     $order = wc_get_order($order_id);
 
     if (!$order) {
-        wp_safe_redirect(admin_url('admin.php?page=smpl-mono'));
+        wp_safe_redirect(admin_url('admin.php?page=yevhenb-mono-payments'));
         exit;
     }
 
@@ -60,7 +60,7 @@ add_action('admin_init', function () {
     );
 
     if (!$invoice) {
-        wp_safe_redirect(admin_url('admin.php?page=smpl-mono'));
+        wp_safe_redirect(admin_url('admin.php?page=yevhenb-mono-payments'));
         exit;
     }
 
@@ -71,7 +71,7 @@ add_action('admin_init', function () {
     $token = $settings['token'] ?? '';
 
     if (!$token) {
-        wp_safe_redirect(admin_url('admin.php?page=smpl-mono'));
+        wp_safe_redirect(admin_url('admin.php?page=yevhenb-mono-payments'));
         exit;
     }
 
@@ -85,7 +85,7 @@ add_action('admin_init', function () {
     );
 
     if (is_wp_error($response)) {
-        wp_safe_redirect(admin_url('admin.php?page=smpl-mono'));
+        wp_safe_redirect(admin_url('admin.php?page=yevhenb-mono-payments'));
         exit;
     }
 
@@ -123,12 +123,12 @@ add_action('admin_init', function () {
 
     }
 
-    wp_safe_redirect(admin_url('admin.php?page=smpl-mono'));
+    wp_safe_redirect(admin_url('admin.php?page=yevhenb-mono-payments'));
     exit;
 
 });
 
-function smpl_mono_get_status_badge($status) {
+function yevhenb_mono_get_status_badge($status) {
 
     $status = strtolower(trim($status));
 
@@ -136,32 +136,32 @@ function smpl_mono_get_status_badge($status) {
 
         'success' => [
             'color' => '#46b450',
-            'label' => __('Success', 'smpl-mono-gateway')
+            'label' => __('Success', 'yevhenb-payments-with-mono-for-woocommerce')
         ],
 
         'processing' => [
             'color' => '#00a0d2',
-            'label' => __('Processing', 'smpl-mono-gateway')
+            'label' => __('Processing', 'yevhenb-payments-with-mono-for-woocommerce')
         ],
 
         'pending' => [
             'color' => '#ffb900',
-            'label' => __('Pending', 'smpl-mono-gateway')
+            'label' => __('Pending', 'yevhenb-payments-with-mono-for-woocommerce')
         ],
 
         'created' => [
             'color' => '#ffb900',
-            'label' => __('Created', 'smpl-mono-gateway')
+            'label' => __('Created', 'yevhenb-payments-with-mono-for-woocommerce')
         ],
 
         'failure' => [
             'color' => '#dc3232',
-            'label' => __('Failed', 'smpl-mono-gateway')
+            'label' => __('Failed', 'yevhenb-payments-with-mono-for-woocommerce')
         ],
 
         'expired' => [
             'color' => '#777',
-            'label' => __('Expired', 'smpl-mono-gateway')
+            'label' => __('Expired', 'yevhenb-payments-with-mono-for-woocommerce')
         ]
 
     ];
@@ -175,7 +175,7 @@ function smpl_mono_get_status_badge($status) {
             border-radius:20px;
             font-size:12px;
         ">' .
-        esc_html__('Unknown', 'smpl-mono-gateway') .
+        esc_html__('Unknown', 'yevhenb-payments-with-mono-for-woocommerce') .
         '</span>';
 
     }
@@ -193,7 +193,7 @@ function smpl_mono_get_status_badge($status) {
 
 }
 
-function smpl_mono_admin_page() {
+function yevhenb_mono_admin_page() {
 
     $current_page = isset($_GET['paged'])
         ? max(1, absint(wp_unslash($_GET['paged'])))
@@ -220,18 +220,18 @@ function smpl_mono_admin_page() {
     echo '<div class="wrap">';
 
     echo '<h1>' .
-    esc_html__('Mono Payments', 'smpl-mono-gateway') .
+    esc_html__('YevhenB Payments', 'yevhenb-payments-with-mono-for-woocommerce') .
     '</h1>';
 
     echo '<table class="widefat striped">';
 
     echo '<thead>
         <tr>
-            <th>' . esc_html__('Order', 'smpl-mono-gateway') . '</th>
-            <th>' . esc_html__('Invoice', 'smpl-mono-gateway') . '</th>
-            <th>' . esc_html__('Status', 'smpl-mono-gateway') . '</th>
-            <th>' . esc_html__('Updated', 'smpl-mono-gateway') . '</th>
-            <th>' . esc_html__('Action', 'smpl-mono-gateway') . '</th>
+            <th>' . esc_html__('Order', 'yevhenb-payments-with-mono-for-woocommerce') . '</th>
+            <th>' . esc_html__('Invoice', 'yevhenb-payments-with-mono-for-woocommerce') . '</th>
+            <th>' . esc_html__('Status', 'yevhenb-payments-with-mono-for-woocommerce') . '</th>
+            <th>' . esc_html__('Updated', 'yevhenb-payments-with-mono-for-woocommerce') . '</th>
+            <th>' . esc_html__('Action', 'yevhenb-payments-with-mono-for-woocommerce') . '</th>
         </tr>
     </thead>';
 
@@ -259,9 +259,9 @@ function smpl_mono_admin_page() {
 
         $check_url = wp_nonce_url(
             admin_url(
-                'admin.php?page=smpl-mono&smpl_check_order=' . $order->get_id()
+                'admin.php?page=yevhenb-mono-payments&yevhenb_check_order=' . $order->get_id()
             ),
-            'smpl_mono_check_order_' . $order->get_id()
+            'yevhenb_mono_check_order_' . $order->get_id()
         );
 
         echo '<tr>
@@ -275,7 +275,7 @@ function smpl_mono_admin_page() {
             </td>
 
             <td>
-                ' . wp_kses_post(smpl_mono_get_status_badge($status)) . '
+                ' . wp_kses_post(yevhenb_mono_get_status_badge($status)) . '
             </td>
 
             <td>
@@ -284,7 +284,7 @@ function smpl_mono_admin_page() {
 
             <td>
                 <a href="' . esc_url($check_url) . '" class="button button-small">
-                    ' . esc_html__('Check', 'smpl-mono-gateway') . '
+                    ' . esc_html__('Check', 'yevhenb-payments-with-mono-for-woocommerce') . '
                 </a>
             </td>
 

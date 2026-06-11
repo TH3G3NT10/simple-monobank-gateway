@@ -11,18 +11,18 @@ add_action('plugins_loaded', function () {
     }
 
     add_filter('woocommerce_payment_gateways', function ($gateways) {
-        $gateways[] = 'WC_SMPL_Mono_Gateway';
+        $gateways[] = 'YEVHENB_Mono_Gateway';
         return $gateways;
     });
 
-    class WC_SMPL_Mono_Gateway extends WC_Payment_Gateway {
+    class YEVHENB_Mono_Gateway extends WC_Payment_Gateway {
 
         public $token;
 
         public function __construct() {
 
             $this->id = 'smpl_mono';
-            $this->method_title = __('Monobank', 'smpl-mono-gateway');
+            $this->method_title = __('Monobank', 'yevhenb-payments-with-mono-for-woocommerce');
             $this->has_fields = false;
 
             $this->init_form_fields();
@@ -43,24 +43,24 @@ add_action('plugins_loaded', function () {
             $this->form_fields = [
 
                 'enabled' => [
-                    'title'   => __('Enable', 'smpl-mono-gateway'),
+                    'title'   => __('Enable', 'yevhenb-payments-with-mono-for-woocommerce'),
                     'type'    => 'checkbox',
                     'default' => 'yes'
                 ],
 
                 'title' => [
-                    'title'   => __('Title', 'smpl-mono-gateway'),
+                    'title'   => __('Title', 'yevhenb-payments-with-mono-for-woocommerce'),
                     'type'    => 'text',
-                    'default' => __('Pay via Monobank', 'smpl-mono-gateway')
+                    'default' => __('YevhenB Payments with Mono', 'yevhenb-payments-with-mono-for-woocommerce')
                 ],
 
                 'description' => [
-                    'title' => __('Description', 'smpl-mono-gateway'),
+                    'title' => __('Description', 'yevhenb-payments-with-mono-for-woocommerce'),
                     'type'  => 'textarea'
                 ],
 
                 'token' => [
-                    'title' => __('API Token', 'smpl-mono-gateway'),
+                    'title' => __('API Token', 'yevhenb-payments-with-mono-for-woocommerce'),
                     'type'  => 'text'
                 ]
 
@@ -83,7 +83,7 @@ add_action('plugins_loaded', function () {
             if (!$order) {
 
                 wc_add_notice(
-                    esc_html__('Payment error', 'smpl-mono-gateway'),
+                    esc_html__('Payment error', 'yevhenb-payments-with-mono-for-woocommerce'),
                     'error'
                 );
 
@@ -119,7 +119,7 @@ add_action('plugins_loaded', function () {
             if (is_wp_error($response)) {
 
                 wc_add_notice(
-                    esc_html__('Payment error', 'smpl-mono-gateway'),
+                    esc_html__('Payment error', 'yevhenb-payments-with-mono-for-woocommerce'),
                     'error'
                 );
 
@@ -135,7 +135,7 @@ add_action('plugins_loaded', function () {
             if (empty($body['invoiceId']) || empty($body['pageUrl'])) {
 
                 wc_add_notice(
-                    esc_html__('Payment error', 'smpl-mono-gateway'),
+                    esc_html__('Payment error', 'yevhenb-payments-with-mono-for-woocommerce'),
                     'error'
                 );
 

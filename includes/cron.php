@@ -4,7 +4,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-add_action('smpl_mono_cron', function () {
+add_action('yevhenb_mono_cron', function () {
 
     $settings = get_option(
         'woocommerce_smpl_mono_settings'
@@ -87,21 +87,21 @@ add_action('smpl_mono_cron', function () {
 
 add_filter('cron_schedules', function ($schedules) {
 
-    $schedules['five_min'] = [
+    $schedules['yevhenb_mono_five_min'] = [
         'interval' => 300,
-        'display'  => __('Every 5 minutes', 'smpl-mono-gateway')
+        'display'  => __('Every 5 minutes', 'yevhenb-payments-with-mono-for-woocommerce')
     ];
 
     return $schedules;
 
 });
 
-if (!wp_next_scheduled('smpl_mono_cron')) {
+if (!wp_next_scheduled('yevhenb_mono_cron')) {
 
     wp_schedule_event(
         time(),
-        'five_min',
-        'smpl_mono_cron'
+        'yevhenb_mono_five_min',
+        'yevhenb_mono_cron'
     );
 
 }
